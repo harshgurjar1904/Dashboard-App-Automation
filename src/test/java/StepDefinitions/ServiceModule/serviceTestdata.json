@@ -1,0 +1,43 @@
+[
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atMaintenanceRequests",
+    "packageName": "Plumbing"
+  },
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atWatterBottle",
+    "addonName": "Cold Water"
+  },
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atBedPillow",
+    "addonName": "Medium"
+  },
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atToiletries",
+    "addonName": "Shampoo",
+    "addonQuantity": "3"
+  },
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atLaunderedShirts",
+    "preferenceTypeName": "Return Preference",
+    "preferenceName": "Boxed"
+  },
+  {
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper",
+    "serviceName": "atFloralArrangements",
+    "addonName": "Lilly",
+    "addonQuantity": "3"
+  }
+
+
+]
