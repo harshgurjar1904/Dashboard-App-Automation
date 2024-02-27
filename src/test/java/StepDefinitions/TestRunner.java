@@ -7,5 +7,6 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features="src/test/resources/Features",glue={"StepDefinitions"}, monochrome = true, plugin = {"pretty","html:target/htmlReports"},tags="@ValidLoginTest")
 public class TestRunner {
+    System.out.println(email+password);
 
 }
