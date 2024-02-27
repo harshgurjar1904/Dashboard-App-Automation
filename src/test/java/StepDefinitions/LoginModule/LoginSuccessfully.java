@@ -33,7 +33,7 @@ public void setLoginPage() {
 	@Test(dataProvider="getLoginData",priority=1)
 	public void SuccessfullyLogin(HashMap<String,String> input) throws InterruptedException{
 //		setLoginPage();
-		LoginPage loginPage=new LoginPage(driver);
+		LoginPage  loginPage=new LoginPage(driver);
 	
 //		driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.paragon.sensonicstaff:id/label_email_address\"]")).sendKeys(emailAddress); 
 		loginPage.sendEmailAddress(input.get("emailAddress"));

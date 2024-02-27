@@ -16,13 +16,13 @@ public class LoginPage {
 	
 //	driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.paragon.sensonicstaff:id/label_email_address\"]")).sendKeys(emailAddress); 
 	@AndroidFindBy(xpath="//android.widget.EditText[@resource-id=\"com.paragon.sensonicstaff:id/label_email_address\"]")
-	private WebElement emailFieldLocator;
+	public WebElement emailFieldLocator;
 
 	
 
 //	driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.paragon.sensonicstaff:id/label_password\"]")).sendKeys(password);
 	@AndroidFindBy(xpath="//android.widget.EditText[@resource-id=\"com.paragon.sensonicstaff:id/label_password\"]")
-	private WebElement passwordlocator;
+	public WebElement passwordlocator;
 	
 
 //	driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/btn_login\"]")).click();	

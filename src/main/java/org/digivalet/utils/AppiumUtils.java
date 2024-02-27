@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
-public class AppiumUtils {
+public class AppiumUtils extends AbstractTestNGCucumberTests {
 	public List<HashMap<String,String>> getJsonData(String jsonFilePath) throws IOException{
 	
 		String jsonContent=FileUtils.readFileToString(new File(jsonFilePath),StandardCharsets.UTF_8);
@@ -22,7 +23,7 @@ public class AppiumUtils {
 		
 	}
 	
-	public AppiumDriverLocalService startAppiumServer(String systemUserName,String ipAddress, int portNO) {
+	public static AppiumDriverLocalService startAppiumServer(String systemUserName, String ipAddress, int portNO) {
 		//below code is used to start the appium server through code 		
 		AppiumDriverLocalService service= new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\"+systemUserName+"\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js")).withIPAddress(ipAddress).usingPort(portNO).build();
 		

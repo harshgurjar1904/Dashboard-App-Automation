@@ -20,7 +20,9 @@ public class OutletProductOrdering extends AndroidActions{
 		this.driver=driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
-	
+	@AndroidFindBy(xpath="//android.widget.FrameLayout[@content-desc='More']")
+	private WebElement moreLocator;
+
 	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/edit_unit_number\"]")
 	private WebElement unitNoFieldLocator;
 	
@@ -58,7 +60,9 @@ public class OutletProductOrdering extends AndroidActions{
 //		
 //	}
 	
-	
+	public void tapOnMore(){
+		moreLocator.click();
+	}
 	
 	public void findOutlet(String outletName) {
 		openFeature(outletName);
@@ -352,7 +356,7 @@ public class OutletProductOrdering extends AndroidActions{
 	public void addQuantityAddon(String addonName, int addonQuantity) throws InterruptedException {
 //
 //		Thread.sleep(3000);
-		scroll(542,348,480,2024);
+//		scroll(542,348,480,2024);
 		WebElement parentElement=driver.findElement(By.id("com.paragon.sensonicstaff:id/add_ons_rv"));
 		
 		List<WebElement> childElements = parentElement.findElements(By.className("android.widget.LinearLayout"));

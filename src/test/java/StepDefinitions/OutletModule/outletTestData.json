@@ -15,7 +15,8 @@
         "productName":"Mango Juice with saffron",
         "productQuantity":"1",
         "modifierFamily":"Family of Wines",
-        "modifierName":"White Wine C"
+        "modifierName":"White Wine C",
+        "modifierQuantity":"1"
     },
     {
         "outletName":"Bar & Kitchen Requests",
@@ -80,7 +81,7 @@
         "modifierName":"Swiss",
         "modifierQuantity":"3",
         "addonName":"Bacon",
-        "addonQuantity":"3"
+        "addonQuantity":""
     },
     {
         "outletName":"Bar & Kitchen Requests",

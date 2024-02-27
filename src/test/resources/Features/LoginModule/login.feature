@@ -1,68 +1,52 @@
+
+@LoginTest
 Feature: feature to test login functionality
 
-  Scenario Outline: Check login functionality without credentials
-    Given User is on login page
-    When User enter <email> and <password>
-    And User click on Login button
-    Then User get email <error> message
-    Examples:
-      |email|password|error|
-      |||Email address can't be blank.|
+#  @LoginTest
+  Scenario: Check login functionality without credentials
+    Given I am on login page
+    When I am not  entering email and password
+    And I click on Login button
+    Then I get email address error
 
-  Scenario Outline: Check login functionality with only email address credentials
-    Given User is on login page
-    When User enter correct <email> and not <password>
-    And User click on Login button
-    Then User get password <error> message
-    Examples:
-      |email|password|error|
-      |harsh.gurjar1213@yopmail.com||Password can't be blank.|
+#  @LoginTest
+  Scenario: Check login functionality with only email address credentials
+    Given I am on login page
+    When I am entering email
+    And I click on Login button
+    Then I get password error
 
-  Scenario Outline: Check login functionality with only password credentials
-    Given User is on login page
-    When User enter correct <password> and not <email>
-    And User click on Login button
-    Then User get email <error> message
-    Examples:
-      |email|password|error|
-      ||Hgurjar731@|Email address can't be blank.|
+#  @LoginTest
+  Scenario: Check login functionality with only password credentials
+    Given I am on login page
+    When I am entering  password
+    And I click on Login button
+    Then I get email address error
 
-  Scenario Outline: Check login functionality with incorrect email credentials
-    Given User is on login page
-    When User enter incorrect <email> and correct <password>
-    And User click on Login button
-    Then User get Incorrect <error> message
+#  @LoginTest
+  Scenario: Check login functionality with incorrect email credentials
+    Given I am on login page
+    When I am entering incorrect email and correct password
+    And I click on Login button
+    Then I get Incorrect error
 
-    Examples:
-      |email|password|error|
-      |harsh.gurjar1214@yopmail.com|Hgurjar731@|Incorrect username or password.|
+#  @LoginTest
+  Scenario: Check login functionality with incorrect password credentials
+    Given I am on login page
+    When I am entering correct email and incorrect password
+    And I click on Login button
+    Then I get Incorrect error
 
-  Scenario Outline: Check login functionality with incorrect password credentials
-    Given User is on login page
-    When User enter correct <email> and incorrect <password>
-    And User click on Login button
-    Then User get Incorrect <error> message
+#  @LoginTest
+  Scenario: Check login functionality with incorrect credentials
+    Given I am on login page
+    When I am  entering incorrect email and incorrect password
+    And I click on Login button
+    Then I get Incorrect error
 
-    Examples:
-      |email|password|error|
-      |harsh.gurjar1213@yopmail.com|Hgurjar732@|Incorrect username or password|
-
-  Scenario Outline: Check login functionality with incorrect credentials
-    Given User is on login page
-    When User enter incorrect <email> and incorrect <password>
-    And User click on Login button
-    Then User get Incorrect <error> message
-
-    Examples:
-      |email|password|error|
-      |harsh.gurjar1214@yopmail.com|Hgurjar732@|Incorrect username or password|
-
-  Scenario Outline: Check login functionality with valid credentials
-    Given User is on login page
-    When User enter <email> and <password>
-    And User click on Login button
-    Then User is navigated to the residents screen with correct <email>
-
-    Examples:
-      |email|password|
-      |harsh.gurjar1213@yopmail.com|Hgurjar731@|
+#  @LoginTest
+  Scenario: Check login functionality with valid credentials
+    Given I am on login page
+    When I am entering correct email and correct password
+    And I click on Login button
+    Then I am navigated to the residents screen and verify email
