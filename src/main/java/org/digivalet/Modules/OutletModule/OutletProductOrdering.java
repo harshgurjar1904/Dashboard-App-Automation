@@ -106,9 +106,9 @@ public class OutletProductOrdering extends AndroidActions{
 	}
 
 	public void tapOnCartButton(int x, int y) {
-//        tapOnCoordinate(x,y);s
+        tapOnCoordinate(x,y);
         
-		cartButtonLocator.click();
+//		cartButtonLocator.click();
 	}
 	
 	public void increaseCounterTo(int value) {

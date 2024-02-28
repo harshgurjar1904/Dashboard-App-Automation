@@ -1,5 +1,7 @@
 package StepDefinitions.OutletModule;
 
+import com.google.common.collect.ImmutableMap;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import jdk.internal.org.jline.terminal.TerminalBuilder;
 import org.digivalet.Modules.OutletModule.OutletProductOrdering;
@@ -12,14 +14,21 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProductOrderingFromOutlet extends OutletTestRunner{
+
+//    adb shell dumpsy window | find "mCurrentFocus"
+//    com.paragon.sensonicstaff/com.paragon.sensonicstaff.ui.activities.dashboard.DashboardActivity
+    @Before(value="@GoToMoreSection")
+    public void resetToMore(){
+        driver.executeScript("mobile:startActivity", ImmutableMap.of("intent","com.paragon.sensonicstaff/com.paragon.sensonicstaff.ui.activities.dashboard.DashboardActivity"));
+    }
+
+
     @Given("^I am on Outlet requests list  Screen$")
     public void userIsOnOutletRequestsListScreen() {
         OutletProductOrdering opo=new OutletProductOrdering(driver);
         opo.tapOnMore();
         opo.findOutlet(outletName);
     }
-
-
 
     @When("^I tap on plus icon$")
     public void userTapOnPlusIcon() {

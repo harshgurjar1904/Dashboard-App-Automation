@@ -6,7 +6,9 @@ Feature: feature to test product ordering from outlet
     When I am entering correct email and correct password
     And I click on Login button
     Then I am navigated to the residents screen
+
 #  @OutletTest
+#  @GoToMoreSection
   Scenario: I  want to order product without modifier and addon from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
@@ -26,6 +28,7 @@ Feature: feature to test product ordering from outlet
     Then I verify the order details
 
 #  @OutletTest
+#  @GoToMoreSection
   Scenario: I  want to order product with boolean modifier from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
@@ -46,6 +49,7 @@ Feature: feature to test product ordering from outlet
     Then I verify the order details with modifier details
 
 #  @OutletTest
+#  @GoToMoreSection
   Scenario: I  want to order product with boolean addon from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
@@ -66,6 +70,7 @@ Feature: feature to test product ordering from outlet
     Then I verify the order details with addon details
 
 #  @OutletTest
+#  @GoToMoreSection
   Scenario: I  want to order product with quantity modifier from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
@@ -86,6 +91,7 @@ Feature: feature to test product ordering from outlet
     Then I verify the order details with modifier details
 
 #  @OutletTest
+#  @GoToMoreSection
   Scenario: I  want to order product with quantity addon from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
@@ -106,6 +112,7 @@ Feature: feature to test product ordering from outlet
     Then I verify the order details with addon details
 
   @OutletTest
+  @GoToMoreSection
   Scenario: I  want to order product with Quantity modifier and Quantity addon from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon
