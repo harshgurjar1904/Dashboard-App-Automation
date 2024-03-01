@@ -28,6 +28,9 @@ public class ServiceRequest extends PortalAppUtils {
     @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_service_value\"]")
     private WebElement serviceLocator;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_special_entity_value\"]")
+    private WebElement specialEntityFieldLocator;
+
     @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_room_name\"]")
     private WebElement requestUnitNoLocator;
 
@@ -70,10 +73,16 @@ public class ServiceRequest extends PortalAppUtils {
         }
     }
 
+    public void selectSpecialEntity(String entityName){
+        specialEntityFieldLocator.click();
+        scrollToText(entityName);
+        tapONDoneButton();
+    }
+
     public void selectBooleanPackage(String packageName){
         WebElement packagesSelector=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/package_rv\"]"));
         List<WebElement> packageItemNames=packagesSelector.findElements(By.className("android.widget.TextView"));
-        List<WebElement> packageItemSelectors=packagesSelector.findElements(By.className("android.widget.ImageView"));
+        List<WebElement> packageItemSelectors=packagesSelector.findElements(By.id("com.paragon.sensonicstaff:id/checkbox"));
         int packageItemSize=packageItemNames.size();
         int packageSelectorSize=packageItemSelectors.size();
         int temp1=0;
@@ -84,6 +93,7 @@ public class ServiceRequest extends PortalAppUtils {
         while(temp1<packageItemSize){
             if(packageItemNames.get(temp1).getText().contains(packageName)){
                 System.out.println(packageItemNames.get(temp1).getText());
+                System.out.println("value of temp 2 "+temp2);
                 packageItemSelectors.get(temp2).click();
                 break;
             }

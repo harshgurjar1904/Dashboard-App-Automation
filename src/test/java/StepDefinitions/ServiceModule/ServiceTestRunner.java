@@ -20,11 +20,12 @@ public class ServiceTestRunner extends BaseClass {
     public static String addonQuantity;
     public static String preferenceTypeName;
     public static String preferenceName;
-
+    public static String specialEntityName;
+    public static String anotherPackageName;
     @DataProvider(parallel = true)
     public Object[][] getData() throws IOException {
         List<HashMap<String,String>> data=getJsonData("src/test/java/StepDefinitions/ServiceModule/serviceTestdata.json");
-        return new Object[][]{{data.get(5)}};
+        return new Object[][]{{data.get(6)}};
     }
 
     @Test(dataProvider="getData",priority=-1)
@@ -32,11 +33,13 @@ public class ServiceTestRunner extends BaseClass {
         unitNo = input.get("unitNo");
         residentName = input.get("residentName");
         serviceName=input.get("serviceName");
-//        packageName=input.get("packageName");
-        addonName=input.get("addonName");
-        addonQuantity=input.get("addonQuantity");
+        packageName=input.get("packageName");
+        anotherPackageName=input.get("anotherPackageName");
+//        addonName=input.get("addonName");
+//        addonQuantity=input.get("addonQuantity");
 //        preferenceTypeName=input.get("preferenceTypeName");
 //        preferenceName=input.get("preferenceName");
+        specialEntityName=input.get("petName");
     }
 
 

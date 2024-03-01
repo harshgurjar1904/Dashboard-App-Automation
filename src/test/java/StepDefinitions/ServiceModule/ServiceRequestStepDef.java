@@ -50,7 +50,7 @@ public class ServiceRequestStepDef extends ServiceTestRunner{
 
 
 
-    @When("I select the package")
+    @When("^I select the package$")
     public void iSelectThePackage() {
         ServiceRequest serviceDriver= new ServiceRequest(driver);
         serviceDriver.selectBooleanPackage(packageName);
@@ -114,5 +114,17 @@ public class ServiceRequestStepDef extends ServiceTestRunner{
     public void iSelectTheSingleSelectPreference() throws InterruptedException {
         ServiceRequest serviceDriver= new ServiceRequest(driver);
         serviceDriver.selectPreferenceName(preferenceName);
+    }
+
+    @And("I select pet")
+    public void iSelectPet() {
+        ServiceRequest serviceDriver=new ServiceRequest(driver);
+        serviceDriver.selectSpecialEntity(specialEntityName);
+    }
+
+    @And("I select one more package")
+    public void iSelectOneMorePackage() {
+        ServiceRequest serviceDriver= new ServiceRequest(driver);
+        serviceDriver.selectBooleanPackage(anotherPackageName);
     }
 }
