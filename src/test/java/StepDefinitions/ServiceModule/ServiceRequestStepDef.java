@@ -127,4 +127,16 @@ public class ServiceRequestStepDef extends ServiceTestRunner{
         ServiceRequest serviceDriver= new ServiceRequest(driver);
         serviceDriver.selectBooleanPackage(anotherPackageName);
     }
+
+    @And("I select the future date")
+    public void iSelectTheFutureDate() {
+        ServiceRequest serviceDriver=new ServiceRequest(driver);
+        serviceDriver.selectdate(date1);
+
+    }
+
+    @And("I select the prefered time")
+    public void iSelectThePreferedTime() {
+
+    }
 }

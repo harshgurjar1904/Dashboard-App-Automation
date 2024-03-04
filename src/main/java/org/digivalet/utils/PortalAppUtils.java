@@ -53,4 +53,17 @@ public class PortalAppUtils extends AndroidActions {
         filterButtonLocator.click();
     }
 
+    public void selectParticularDate(String date){
+        driver.findElement(By.xpath("//android.view.View[@content-desc=\""+date+"\"]")).click();
+
+        //android.view.View[@content-desc='01 April 2024']
+        //android.view.View[@content-desc="04 March 2024"]
+    }
+    public void selectParticularTime(String time){
+        driver.findElement(By.xpath("//android.view.View[@content-desc=\""+time+"\"]")).click();
+
+        //android.view.View[@content-desc='01 April 2024']
+        //android.view.View[@content-desc="04 March 2024"]
+    }
+
 }

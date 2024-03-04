@@ -43,6 +43,13 @@ public class ServiceRequest extends PortalAppUtils {
     @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_package_value\"]")
     private WebElement requestPackageNameLocator;
 
+    @AndroidFindBy(xpath="//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]")
+    private WebElement dateTimePickerLocator;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"android:id/button1\"]")
+    private WebElement okButtonLocator;
+
+
 
     public void openService(){
         openFeature("Services");
@@ -78,6 +85,24 @@ public class ServiceRequest extends PortalAppUtils {
         scrollToText(entityName);
         tapONDoneButton();
     }
+
+    public void selectdate(String date){
+        WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
+        List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
+        WebElement datePickerLocator=childElement.get(0).findElements(By.className("android.widget.TextView")).get(1);
+        datePickerLocator.click();
+        selectParticularDate(date);
+        okButtonLocator.click();
+    }
+    public void selectTime(String time){
+        WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
+        List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
+        WebElement timePickerLocator=childElement.get(1).findElements(By.className("android.widget.TextView")).get(1);
+        timePickerLocator.click();
+        selectParticularTime(time);
+        okButtonLocator.click();
+    }
+
 
     public void selectBooleanPackage(String packageName){
         WebElement packagesSelector=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/package_rv\"]"));
