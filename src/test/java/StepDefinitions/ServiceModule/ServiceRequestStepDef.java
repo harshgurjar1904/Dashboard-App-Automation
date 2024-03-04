@@ -1,10 +1,39 @@
 package StepDefinitions.ServiceModule;
 
+import StepDefinitions.TestRunner.TestRunner;
 import io.cucumber.java.en.*;
-import jdk.internal.org.jline.terminal.TerminalBuilder;
 import org.digivalet.Modules.ServiceModule.ServiceRequest;
 
-public class ServiceRequestStepDef extends ServiceTestRunner{
+import java.io.IOException;
+
+public class ServiceRequestStepDef extends TestRunner {
+
+
+    public static String serviceName;
+    public static String packageName;
+    public static String addonName;
+    public static String addonQuantity;
+    public static String preferenceTypeName;
+    public static String preferenceName;
+    public static String specialEntityName;
+    public static String anotherPackageName;
+    public static String date1;
+
+    static {
+        try {
+            serviceName = getData(2,"serviceName");
+            packageName=getData(2,"packageName");
+            anotherPackageName=getData(2,"anotherPackageName");
+            addonName=getData(2,"addonName");
+            addonQuantity=getData(2,"addonQuantity");
+        preferenceTypeName=getData(2,"preferenceTypeName");
+        preferenceName=getData(2,"preferenceName");
+        specialEntityName=getData(2,"petName");
+            date1=getData(2,"date");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Given("I am on Service requests list  Screen")
     public void iAmOnServiceRequestsListScreen() {
@@ -135,8 +164,9 @@ public class ServiceRequestStepDef extends ServiceTestRunner{
 
     }
 
-    @And("I select the prefered time")
-    public void iSelectThePreferedTime() {
+    @And("I select the preferred time")
+    public void iSelectThePreferredTime() {
+
 
     }
 }

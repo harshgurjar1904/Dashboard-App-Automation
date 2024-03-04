@@ -1,0 +1,28 @@
+[
+  {
+    "emailAddress":"harsh.gurjar1213@yopmail.com",
+    "password":"Hgurjar731@",
+    "incorrectEmailAddress":"harsh.gurjar1214@yopmail.com",
+    "incorrectPassword":"Hgurjar732@",
+    "unitNo":"4004, Tower A",
+    "residentName":"Harry Cooper"
+  },
+  {
+     "outletName":"Bar & Kitchen Requests",
+    "outletInstance":"Riverside Bistro",
+    "productName":"Classic Cheeseburger",
+    "productQuantity":"4",
+    "modifierFamily":"Choice of Cheese",
+    "modifierName":"Swiss",
+    "modifierQuantity":"1",
+    "addonName":"Avocado",
+    "addonQuantity":"1"
+  },
+  {
+    "serviceName": "atWatterBottle",
+    "addonName": "Cold Water",
+    "date": "10 April 2024",
+    "addonQuantity": "1",
+    "time": ""
+  }
+]

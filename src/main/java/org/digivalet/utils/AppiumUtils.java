@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AppiumUtils extends AbstractTestNGCucumberTests {
-	public List<HashMap<String,String>> getJsonData(String jsonFilePath) throws IOException{
+	public static List<HashMap<String,String>> getJsonData(String jsonFilePath) throws IOException{
 	
 		String jsonContent=FileUtils.readFileToString(new File(jsonFilePath),StandardCharsets.UTF_8);
 		ObjectMapper mapper=new ObjectMapper();
@@ -22,15 +22,21 @@ public class AppiumUtils extends AbstractTestNGCucumberTests {
 		return data;
 		
 	}
-	
+	public static String getData(int n, String key) throws IOException {
+		List<HashMap<String,String>> data=getJsonData("Resources/TestData.json");
+		return data.get(n).get(key);
+	}
+
+
 	public static AppiumDriverLocalService startAppiumServer(String systemUserName, String ipAddress, int portNO) {
-		//below code is used to start the appium server through code 		
+		//below code is used to start the appium server through code
 		AppiumDriverLocalService service= new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\"+systemUserName+"\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js")).withIPAddress(ipAddress).usingPort(portNO).build();
 		
 		service.start(); //start the server
 		return service;
 	}
-	
+
+
 	
 	
 }

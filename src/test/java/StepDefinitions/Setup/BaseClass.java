@@ -31,19 +31,36 @@ public class BaseClass extends AppiumUtils{
 	public AppiumDriverLocalService service;
 	public static String correctEmail;
 	public static String correctPassword;
+	public static String unitNo;
+	public static String residentName;
+
+	static {
+        try {
+            correctEmail = getData(0,"emailAddress");
+			correctPassword =getData(0,"password");
+			unitNo=getData(0,"unitNo");
+			residentName=getData(0,"residentName");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 //	public static LoginPage loginDriver=new LoginPage(driver);
 	@BeforeClass
 	public void configorAppium() throws IOException {
-	
-				Properties prop=new Properties(); 
+
+				Properties prop=new Properties();
 				FileInputStream fis= new FileInputStream(System.getProperty("user.dir")+"\\Resources\\data.properties");
 				prop.load(fis);
 				String ipAddress=prop.getProperty("ipAddress");
 				int portNo=Integer.parseInt(prop.getProperty("portNo"));
-				String systemUserName=prop.getProperty("systenUserName2");
-				String deviceName=prop.getProperty("deviceName2");
+				String systemUserName=prop.getProperty("systenUserName1");
+				String deviceName=prop.getProperty("deviceName1");
 				int duration=Integer.parseInt(prop.getProperty("duration"));
 				String appPath=System.getProperty("user.dir")+"\\Resources\\base.apk";
+
 
 				service=startAppiumServer(systemUserName,ipAddress,portNo);
 				UiAutomator2Options option= new UiAutomator2Options();
@@ -61,17 +78,7 @@ public class BaseClass extends AppiumUtils{
 		//stop the service or appium server
 		service.stop();
 	}
-	@DataProvider(parallel = true)
-	public Object[][] getLoginData() throws IOException {
 
-		List<HashMap<String,String>> data=getJsonData("src/test/java/StepDefinitions/LoginModule/loginTestData.json");
-		return new Object[][]{{data.get(0)}};
-	}
 
-	@Test(dataProvider="getLoginData",priority = -2)
-	public void setLoginData(HashMap<String,String> input) {
-		correctEmail = input.get("emailAddress");
-		correctPassword = input.get("password");
-	}
 
 }

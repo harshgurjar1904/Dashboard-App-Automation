@@ -157,9 +157,10 @@ Feature: feature to test requesting a service from portal app
     Then I can see the addon section
     When I select the addon
     And I select the future date
-    And I select the prefered time
+    And I select the preferred time
     And I tap on the Save button
     Then I can see request is created successfully
     When I tap on created request
     Then I can verify request details with addon
+
 

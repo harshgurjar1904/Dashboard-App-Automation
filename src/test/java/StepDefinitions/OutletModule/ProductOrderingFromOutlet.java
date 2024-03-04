@@ -1,26 +1,50 @@
 package StepDefinitions.OutletModule;
 
+import StepDefinitions.TestRunner.TestRunner;
 import com.google.common.collect.ImmutableMap;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-import jdk.internal.org.jline.terminal.TerminalBuilder;
 import org.digivalet.Modules.LoginModule.LoginPage;
 import org.digivalet.Modules.OutletModule.OutletProductOrdering;
-import org.openqa.selenium.By;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 
-public class ProductOrderingFromOutlet extends OutletTestRunner{
+public class ProductOrderingFromOutlet extends TestRunner {
+    public static String outletName;
+    public static String bookFrom;
+    public static String productName;
+    public static int productQuantity;
+    public static String modifierFamily;
+    public static String modifierName;
+    public static int modifierQuantity;
+    public static String modifierQuantity1;
+    public static String addonName;
+    public static int addonQuantity;
+    public static  String addonQuantity1;
+    static {
+        try {
+            outletName = getData(1,"outletName");
+            bookFrom=getData(1,"outletInstance");
+            productName=getData(1,"productName");
+            productQuantity=Integer.parseInt(getData(1,"productQuantity"));
+            modifierFamily=getData(1,"modifierFamily");
+            modifierName=getData(1,"modifierName");
+            modifierQuantity1=getData(1,"modifierQuantity");
+            modifierQuantity=Integer.parseInt(modifierQuantity1);
+            addonName=getData(1,"addonName");
+            addonQuantity1=getData(1,"addonQuantity");
+            addonQuantity=Integer.parseInt(addonQuantity1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Before(value="@GoToMoreSection" ,order=1)
     public void resetToMore(){
         driver.executeScript("mobile:startActivity", ImmutableMap.of("intent","com.paragon.sensonicstaff/com.paragon.sensonicstaff.ui.activities.dashboard.DashboardActivity"));
     }
-    @Before(value="@GoToMoreSection", order=2)
+    @Before(value="@@AllowPermission", order=2)
     public void allowPermission(){
         LoginPage loginPage= new LoginPage(driver);
         loginPage.allowPermission();
