@@ -56,8 +56,8 @@ public class BaseClass extends AppiumUtils{
 				prop.load(fis);
 				String ipAddress=prop.getProperty("ipAddress");
 				int portNo=Integer.parseInt(prop.getProperty("portNo"));
-				String systemUserName=prop.getProperty("systenUserName1");
-				String deviceName=prop.getProperty("deviceName1");
+				String systemUserName=prop.getProperty("systenUserName2");
+				String deviceName=prop.getProperty("deviceName3");
 				int duration=Integer.parseInt(prop.getProperty("duration"));
 				String appPath=System.getProperty("user.dir")+"\\Resources\\base.apk";
 
@@ -65,9 +65,11 @@ public class BaseClass extends AppiumUtils{
 				service=startAppiumServer(systemUserName,ipAddress,portNo);
 				UiAutomator2Options option= new UiAutomator2Options();
 				option.setDeviceName(deviceName); 				
-				option.setApp(appPath); 
+				option.setApp(appPath);
+				option.autoGrantPermissions();
 				driver= new AndroidDriver(service.getUrl(), option);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(duration));
+
 	}
 	
 	@AfterClass

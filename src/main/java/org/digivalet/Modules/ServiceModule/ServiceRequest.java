@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
+import java.util.*;
 
 public class ServiceRequest extends PortalAppUtils {
 
@@ -48,6 +48,9 @@ public class ServiceRequest extends PortalAppUtils {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"android:id/button1\"]")
     private WebElement okButtonLocator;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/Delivery_time_value\"]")
+    private WebElement preferredDeliveryTimeLocator;
 
 
 
@@ -94,28 +97,43 @@ public class ServiceRequest extends PortalAppUtils {
         selectParticularDate(date);
         okButtonLocator.click();
     }
-    public void selectTime(String time){
+
+    public void selectTimeSlot(String timeSlot){
+        WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
+        List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
+        WebElement timeSlotPickerLocator=childElement.get(1).findElements(By.className("android.widget.TextView")).get(1);
+        selectParticularTimeSlot(timeSlot);
+        timeSlotPickerLocator.click();
+    }
+
+
+
+    public void selectRequestTime(String time) throws InterruptedException {
+
         WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
         List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
         WebElement timePickerLocator=childElement.get(1).findElements(By.className("android.widget.TextView")).get(1);
         timePickerLocator.click();
-//        selectParticularTime(time);
+        Thread.sleep(2000);
+        selectTime(time);
 
-        //Hours
-        driver.findElement(By.id("android:id/hours")).clear();
-        driver.findElement(By.id("android:id/hours")).sendKeys("11");
+    }
+    public void selectRequestTimeInTimeSlot(String time) throws InterruptedException {
 
+        WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
+        List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
+        WebElement timePickerLocator=childElement.get(2).findElements(By.className("android.widget.TextView")).get(1);
+        timePickerLocator.click();
+        Thread.sleep(2000);
+        selectTime(time);
 
-        //MinUTS
-        driver.findElement(By.id("android:id/minutes")).clear();
-        driver.findElement(By.id("android:id/minutes")).sendKeys("55");
-
-
-        //am
-        driver.findElement(By.id("android:id/pm_label")).click();
-        okButtonLocator.click();
     }
 
+    public void selectDeliveryTime(String time) throws InterruptedException {
+        preferredDeliveryTimeLocator.click();
+        Thread.sleep(2000);
+        selectTime(time);
+    }
 
     public void selectBooleanPackage(String packageName){
         WebElement packagesSelector=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/package_rv\"]"));

@@ -1,11 +1,17 @@
 package org.digivalet.utils;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+
+import java.time.Duration;
+import java.util.*;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
 
 public class AndroidActions extends AppiumUtils {
 	public AndroidDriver driver;
@@ -24,49 +30,57 @@ public class AndroidActions extends AppiumUtils {
 
 	public void tapOnCoordinate(int x, int y) {
 
-		 TouchAction touchAction = new TouchAction(driver);
-		 touchAction.tap(PointOption.point(x, y))
-		 .perform();
+//		 TouchAction touchAction = new TouchAction(driver);
+//		 touchAction.tap(PointOption.point(x, y))
+//		 .perform();
+		((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
+				"x",x,
+				"y",y,
+				"duartion",500
+				));
+
 	}
-	
-//	public void scrollToBottom() {
-//        org.openqa.selenium.Dimension size = driver.manage().window().getSize();
-//        int startX = size.width / 2;
-//        int startY = (int) (size.height * 0.8); // Start from 80% of the height
-//        int endY = (int) (size.height * 0.2);   // End at 20% of the height
-//
-//        TouchAction touchAction = new TouchAction(driver);
-//        touchAction.press(PointOption.point(startX, startY))
-//                   .waitAction()
-//                   .moveTo(PointOption.point(startX, endY))
-//                   .release()
-//                   .perform();
-//    }
 
-//	public void scroll(double startPercentage, double endPercentage) {
-//		Dimension size = driver.manage().window().getSize();
-//		int startX = (int) (size.width * 0.5);
-//		int startY = (int) (size.height * startPercentage);
-//		int endY = (int) (size.height * endPercentage);
-//		TouchAction touchAction = new TouchAction(driver);
-//		touchAction.press(PointOption.point(startX, startY))
-//				.moveTo(PointOption.point(startX, endY))
-//				.release()
-//				.perform();
-//	}
+	public void selectTime(String time) throws InterruptedException {
 
-//	//Vertical Swipe by percentages
-//	public void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
-//		Dimension size = driver.manage().window().getSize();
-//		int anchor = (int) (size.width * anchorPercentage);
-//		int startPoint = (int) (size.height * startPercentage);
-//		int endPoint = (int) (size.height * endPercentage);
-//		new TouchAction(driver)
-//				.press(point(anchor, startPoint))
-//				.waitAction(waitOptions(ofMillis(1000)))
-//				.moveTo(point(anchor, endPoint))
-//				.release().perform();
-//	}
+		Map<Integer, List<Integer>> xYCoordinateForHour=new HashMap<Integer,List<Integer>>();
+		xYCoordinateForHour.put(1,  new ArrayList<Integer>(Arrays.asList(664,1047)));
+		xYCoordinateForHour.put(2,  new ArrayList<Integer>(Arrays.asList(752,1135)));
+		xYCoordinateForHour.put(3,  new ArrayList<Integer>(Arrays.asList(779,1254)));
+		xYCoordinateForHour.put(4,  new ArrayList<Integer>(Arrays.asList(752,1370)));
+		xYCoordinateForHour.put(5,  new ArrayList<Integer>(Arrays.asList(664,1457)));
+		xYCoordinateForHour.put(6,  new ArrayList<Integer>(Arrays.asList(535,1494)));
+		xYCoordinateForHour.put(7,  new ArrayList<Integer>(Arrays.asList(420,1453)));
+		xYCoordinateForHour.put(8,  new ArrayList<Integer>(Arrays.asList(332,1374)));
+		xYCoordinateForHour.put(9,  new ArrayList<Integer>(Arrays.asList(304,1250)));
+		xYCoordinateForHour.put(10,  new ArrayList<Integer>(Arrays.asList(341,1139)));
+		xYCoordinateForHour.put(11,  new ArrayList<Integer>(Arrays.asList(429,1042)));
+		xYCoordinateForHour.put(12,  new ArrayList<Integer>(Arrays.asList(544,1015)));
+
+		int hour=Integer.parseInt(time.substring(0,2));
+		int minutes=Integer.parseInt(time.substring(3,5));
+		System.out.println("hour "+hour +" minutes "+minutes);
+
+		minutes=minutes/5;
+		int xH= xYCoordinateForHour.get(hour).get(0);
+		int yH= xYCoordinateForHour.get(hour).get(1);
+		int xM= xYCoordinateForHour.get(minutes).get(0);
+		int yM= xYCoordinateForHour.get(minutes).get(1);
+		tapOnCoordinate(xH,yH);
+		Thread.sleep(1000);
+		tapOnCoordinate(xM,yM);
+		System.out.println("hour "+xH+"  "+yH +" minutes "+xM+"  "+yM );
+		String amPm=time.substring(6,8);
+		System.out.println("type "+amPm);
+		if(amPm.contains("AM")){
+			driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/mdtp_am_label\"]")).click();
+		}
+		else{
+			driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/mdtp_pm_label\"]")).click();
+		}
+
+		driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/mdtp_ok\"]")).click();
+	}
 
 	public void scroll(int startX, int startY, int endX, int endY) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;

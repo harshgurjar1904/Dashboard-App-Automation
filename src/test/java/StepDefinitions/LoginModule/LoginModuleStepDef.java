@@ -117,7 +117,7 @@ public class LoginModuleStepDef extends TestRunner {
 
     @Then("I am navigated to the residents screen")
     public void iAmNavigatedToTheResidentsScreen() {
-        LoginPage loginDriver=new LoginPage(driver);
-        loginDriver.allowPermission();
+//        LoginPage loginDriver=new LoginPage(driver);
+//        loginDriver.allowPermission();
     }
 }

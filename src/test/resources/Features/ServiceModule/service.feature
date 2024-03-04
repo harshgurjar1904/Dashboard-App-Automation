@@ -157,10 +157,45 @@ Feature: feature to test requesting a service from portal app
     Then I can see the addon section
     When I select the addon
     And I select the future date
-    And I select the preferred time
+    And I select the preferred Request time
     And I tap on the Save button
     Then I can see request is created successfully
     When I tap on created request
     Then I can verify request details with addon
 
+#  @ServiceTest
+  Scenario: I  want to request a service from request only service which is Boolean type addon without price with "Allow future Booking" ."Allow Preferred Request Time" and "Allow Preferred Delivery Time" toggle enabled.
+    Given I am on Service requests list  Screen
+    When I tap on the add service button
+    Then I am redirected to New Service Request Screen
+    When I select Unit No if unit is not auto fetched
+    And I select Resident Name in BookFor if  not auto fetched
+    And I select Service Name
+    Then I can see the addon section
+    When I select the addon
+    And I select the future date
+    And I select the preferred Request time
+    And I select the preferred Delivery time
+    And I tap on the Save button
+    Then I can see request is created successfully
+    When I tap on created request
+    Then I can verify request details with addon
 
+  @ServiceTest
+  Scenario: I  want to request a service from custom availability service which is Boolean type addon with price, and also by selecting time slot for same date
+    Given I am on Service requests list  Screen
+    When I tap on the add service button
+    Then I am redirected to New Service Request Screen
+    When I select Unit No if unit is not auto fetched
+    And I select Resident Name in BookFor if  not auto fetched
+    And I select Service Name
+    Then I can see the addon section
+    When I select the addon
+    And I select Request Time slot
+    And I select the preferred Request time in selected slot
+    And I select delivery date
+    And I select Delivery slot
+    And I tap on the Save button
+    Then I can see request is created successfully
+    When I tap on created request
+    Then I can verify request details with addon

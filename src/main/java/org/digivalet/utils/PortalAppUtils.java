@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class PortalAppUtils extends AndroidActions {
     public PortalAppUtils(AndroidDriver driver) {
         super(driver);
@@ -59,12 +61,21 @@ public class PortalAppUtils extends AndroidActions {
         //android.view.View[@content-desc='01 April 2024']
         //android.view.View[@content-desc="04 March 2024"]
     }
-    public void selectParticularTime(String time){
-        driver.findElement(By.xpath("//android.view.View[@content-desc=\""+time+"\"]")).click();
-
-
-        //android.view.View[@content-desc='01 April 2024']
-        //android.view.View[@content-desc="04 March 2024"]
+    public void selectParticularTimeSlot(String givenTimeSlot){
+       WebElement timeSlotBox=driver.findElement(By.xpath("//android.widget.ListView"));
+       List<WebElement> timeSlots=timeSlotBox.findElements(By.className("android.widget.LinearLayout"));
+       int noOfTimeSlot= timeSlots.size();
+       int temp=0;
+       while(temp<noOfTimeSlot){
+           List<WebElement> timeSlot=timeSlots.get(temp).findElements(By.className("android.widget.TextView"));
+           if(timeSlot.get(0).getText().contains(givenTimeSlot)){
+               timeSlot.get(0).click();
+               break;
+           }
+           temp++;
+       }
     }
+
+
 
 }
