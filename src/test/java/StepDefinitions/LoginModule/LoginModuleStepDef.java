@@ -12,9 +12,7 @@ import org.testng.Assert;
 
 import java.io.IOException;
 
-import static org.digivalet.utils.AppiumUtils.getData;
-
-public class LoginFunctionalityTest extends TestRunner {
+public class LoginModuleStepDef extends TestRunner {
 //    public static LoginPage loginDriver=new LoginPage(driver);
     public static String incorrectEmail;
     public static String incorrectPassword;

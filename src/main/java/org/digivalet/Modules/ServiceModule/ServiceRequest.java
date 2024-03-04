@@ -99,7 +99,20 @@ public class ServiceRequest extends PortalAppUtils {
         List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
         WebElement timePickerLocator=childElement.get(1).findElements(By.className("android.widget.TextView")).get(1);
         timePickerLocator.click();
-        selectParticularTime(time);
+//        selectParticularTime(time);
+
+        //Hours
+        driver.findElement(By.id("android:id/hours")).clear();
+        driver.findElement(By.id("android:id/hours")).sendKeys("11");
+
+
+        //MinUTS
+        driver.findElement(By.id("android:id/minutes")).clear();
+        driver.findElement(By.id("android:id/minutes")).sendKeys("55");
+
+
+        //am
+        driver.findElement(By.id("android:id/pm_label")).click();
         okButtonLocator.click();
     }
 

@@ -9,7 +9,7 @@ import org.digivalet.Modules.OutletModule.OutletProductOrdering;
 
 import java.io.IOException;
 
-public class ProductOrderingFromOutlet extends TestRunner {
+public class OutletModuleStepDef extends TestRunner {
     public static String outletName;
     public static String bookFrom;
     public static String productName;

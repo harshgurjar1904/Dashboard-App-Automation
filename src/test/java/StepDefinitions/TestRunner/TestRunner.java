@@ -11,5 +11,4 @@ import java.util.List;
 
 @CucumberOptions(features="src/test/resources/Features",glue={"StepDefinitions"}, monochrome = true,  plugin = {"pretty","html:target/htmlReports"},tags="@ServiceTest")
 public class TestRunner extends BaseClass {
-
 }

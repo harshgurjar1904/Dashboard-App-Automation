@@ -6,7 +6,7 @@ import org.digivalet.Modules.ServiceModule.ServiceRequest;
 
 import java.io.IOException;
 
-public class ServiceRequestStepDef extends TestRunner {
+public class ServiceModuleStepDef extends TestRunner {
 
 
     public static String serviceName;
@@ -17,7 +17,8 @@ public class ServiceRequestStepDef extends TestRunner {
     public static String preferenceName;
     public static String specialEntityName;
     public static String anotherPackageName;
-    public static String date1;
+    public static String date;
+    public static String time;
 
     static {
         try {
@@ -26,10 +27,11 @@ public class ServiceRequestStepDef extends TestRunner {
             anotherPackageName=getData(2,"anotherPackageName");
             addonName=getData(2,"addonName");
             addonQuantity=getData(2,"addonQuantity");
-        preferenceTypeName=getData(2,"preferenceTypeName");
-        preferenceName=getData(2,"preferenceName");
-        specialEntityName=getData(2,"petName");
-            date1=getData(2,"date");
+            preferenceTypeName=getData(2,"preferenceTypeName");
+            preferenceName=getData(2,"preferenceName");
+            specialEntityName=getData(2,"petName");
+            date=getData(2,"date");
+            time=getData(2,"time");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -118,7 +120,7 @@ public class ServiceRequestStepDef extends TestRunner {
     @When("I select the addon")
     public void iSelectTheAddon() {
         ServiceRequest serviceDriver= new ServiceRequest(driver);
-        serviceDriver.selectQuantityPackage(addonName,addonQuantity);
+        serviceDriver.selectBooleanPackage(addonName);
     }
 
     @Then("I can verify request details with addon")
@@ -160,12 +162,13 @@ public class ServiceRequestStepDef extends TestRunner {
     @And("I select the future date")
     public void iSelectTheFutureDate() {
         ServiceRequest serviceDriver=new ServiceRequest(driver);
-        serviceDriver.selectdate(date1);
+        serviceDriver.selectdate(date);
 
     }
 
     @And("I select the preferred time")
     public void iSelectThePreferredTime() {
+
 
 
     }

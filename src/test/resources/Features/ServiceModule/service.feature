@@ -130,7 +130,7 @@ Feature: feature to test requesting a service from portal app
     When I tap on created request
     Then I can verify request details with addon
 
-  @ServiceTest
+#  @ServiceTest
   Scenario: I  want to request a service from request only service which is Boolean type addon without price with "Allow future Booking" toggle enabled.
     Given I am on Service requests list  Screen
     When I tap on the add service button
@@ -146,7 +146,7 @@ Feature: feature to test requesting a service from portal app
     When I tap on created request
     Then I can verify request details with addon
 
-#  @ServiceTest
+  @ServiceTest
   Scenario: I  want to request a service from request only service which is Boolean type addon without price with "Allow future Booking" and "Allow Preferred Request Time" toggle enabled.
     Given I am on Service requests list  Screen
     When I tap on the add service button
