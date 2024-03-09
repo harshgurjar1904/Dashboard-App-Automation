@@ -22,8 +22,8 @@ public class AppiumUtils extends AbstractTestNGCucumberTests {
 		return data;
 		
 	}
-	public static String getData(int n, String key) throws IOException {
-		List<HashMap<String,String>> data=getJsonData("Resources/TestData.json");
+	public static String getData(String path,int n, String key) throws IOException {
+		List<HashMap<String,String>> data=getJsonData(path);
 		return data.get(n).get(key);
 	}
 
@@ -31,12 +31,8 @@ public class AppiumUtils extends AbstractTestNGCucumberTests {
 	public static AppiumDriverLocalService startAppiumServer(String systemUserName, String ipAddress, int portNO) {
 		//below code is used to start the appium server through code
 		AppiumDriverLocalService service= new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\"+systemUserName+"\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js")).withIPAddress(ipAddress).usingPort(portNO).build();
-		
 		service.start(); //start the server
 		return service;
 	}
-
-
-	
 	
 }

@@ -46,8 +46,7 @@ public class ServiceRequest extends PortalAppUtils {
     @AndroidFindBy(xpath="//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]")
     private WebElement dateTimePickerLocator;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"android:id/button1\"]")
-    private WebElement okButtonLocator;
+
 
     @AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/Delivery_time_value\"]")
     private WebElement preferredDeliveryTimeLocator;
@@ -63,7 +62,7 @@ public class ServiceRequest extends PortalAppUtils {
     public void selectUnitNo(String unitNo) throws InterruptedException {
         if(!unitNoFieldLocator.getText().contains(unitNo)) {
             unitNoFieldLocator.click();
-            scrollToText(unitNo);
+            scrollToTextAndTap(unitNo);
         }
 
     }
@@ -71,7 +70,7 @@ public class ServiceRequest extends PortalAppUtils {
     public void selectResidentName(String residentName) throws InterruptedException {
         if(!bookForLocator.getText().contains(residentName)) {
             bookForLocator.click();
-            scrollToText(residentName);
+            scrollToTextAndTap(residentName);
             tapONDoneButton();
         }
     }
@@ -79,31 +78,44 @@ public class ServiceRequest extends PortalAppUtils {
     public void selectServiceInstance(String serviceName) throws InterruptedException {
         if(!serviceLocator.getText().contains(serviceName)) {
             serviceLocator.click();
-            scrollToText(serviceName);
+            scrollToTextAndTap(serviceName);
         }
     }
 
     public void selectSpecialEntity(String entityName){
         specialEntityFieldLocator.click();
-        scrollToText(entityName);
+        scrollToTextAndTap(entityName);
         tapONDoneButton();
     }
 
-    public void selectdate(String date){
+    public void selectRequestDate(String date){
         WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
         List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
         WebElement datePickerLocator=childElement.get(0).findElements(By.className("android.widget.TextView")).get(1);
         datePickerLocator.click();
         selectParticularDate(date);
-        okButtonLocator.click();
     }
 
-    public void selectTimeSlot(String timeSlot){
+    public void selectDeliveryDate(String date){
+        scrollToText("Note");
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/delivery_date_value\"]")).click();
+        selectParticularDate(date);
+    }
+
+
+    public void selectDeliveryTimeSlot(String timeSlot) throws InterruptedException {
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/Delivery_time_value\"]")).click();
+        selectParticularTimeSlot(timeSlot);
+
+    }
+    public void selectPreferredTimeSlot(String timeSlot) throws InterruptedException {
         WebElement parent=driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/date_time_rv\"]"));
         List<WebElement> childElement=parent.findElements(By.className("android.view.ViewGroup"));
+        System.out.println("childElement size "+childElement.size());
         WebElement timeSlotPickerLocator=childElement.get(1).findElements(By.className("android.widget.TextView")).get(1);
-        selectParticularTimeSlot(timeSlot);
         timeSlotPickerLocator.click();
+        selectParticularTimeSlot(timeSlot);
+
     }
 
 
@@ -242,7 +254,7 @@ public class ServiceRequest extends PortalAppUtils {
         driver.findElement(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/spinner_rv\"]/android.widget.LinearLayout")).click();
         tapONDoneButton();
         tapONSaveButton();
-        Thread.sleep(8000);
+        Thread.sleep(3000);
         List<WebElement> requestList=driver.findElements(By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.paragon.sensonicstaff:id/requests_lists\"]"));
         int s1=requestList.size();
         System.out.println("size of list "+s1);

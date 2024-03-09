@@ -10,6 +10,8 @@ import org.digivalet.Modules.OutletModule.OutletProductOrdering;
 import java.io.IOException;
 
 public class OutletModuleStepDef extends TestRunner {
+    public static String path ="src/test/java/StepDefinitions/OutletModule/OutletTestData.json";
+    public static int n=0;
     public static String outletName;
     public static String bookFrom;
     public static String productName;
@@ -23,16 +25,16 @@ public class OutletModuleStepDef extends TestRunner {
     public static  String addonQuantity1;
     static {
         try {
-            outletName = getData(1,"outletName");
-            bookFrom=getData(1,"outletInstance");
-            productName=getData(1,"productName");
-            productQuantity=Integer.parseInt(getData(1,"productQuantity"));
-            modifierFamily=getData(1,"modifierFamily");
-            modifierName=getData(1,"modifierName");
-            modifierQuantity1=getData(1,"modifierQuantity");
+            outletName = getData(path,n,"outletName");
+            bookFrom=getData(path,n,"outletInstance");
+            productName=getData(path,n,"productName");
+            productQuantity=Integer.parseInt(getData(path,n,"productQuantity"));
+            modifierFamily=getData(path,n,"modifierFamily");
+            modifierName=getData(path,n,"modifierName");
+            modifierQuantity1=getData(path,n,"modifierQuantity");
             modifierQuantity=Integer.parseInt(modifierQuantity1);
-            addonName=getData(1,"addonName");
-            addonQuantity1=getData(1,"addonQuantity");
+            addonName=getData(path,n,"addonName");
+            addonQuantity1=getData(path,n,"addonQuantity");
             addonQuantity=Integer.parseInt(addonQuantity1);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -42,12 +44,8 @@ public class OutletModuleStepDef extends TestRunner {
 
     @Before(value="@GoToMoreSection" ,order=1)
     public void resetToMore(){
-        driver.executeScript("mobile:startActivity", ImmutableMap.of("intent","com.paragon.sensonicstaff/com.paragon.sensonicstaff.ui.activities.dashboard.DashboardActivity"));
-    }
-    @Before(value="@@AllowPermission", order=2)
-    public void allowPermission(){
-        LoginPage loginPage= new LoginPage(driver);
-        loginPage.allowPermission();
+        OutletProductOrdering opo=new OutletProductOrdering(driver);
+        opo.restartFromMoreSection();
     }
 
     @Given("^I am on Outlet requests list  Screen$")

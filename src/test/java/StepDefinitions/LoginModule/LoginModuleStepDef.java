@@ -13,13 +13,14 @@ import org.testng.Assert;
 import java.io.IOException;
 
 public class LoginModuleStepDef extends TestRunner {
-//    public static LoginPage loginDriver=new LoginPage(driver);
+    public static String path ="src/test/java/StepDefinitions/LoginModule/LoginTestData.json";
+    public static int n=0;
     public static String incorrectEmail;
     public static String incorrectPassword;
     static {
         try {
-            incorrectEmail = getData(0,"incorrectEmailAddress");
-            incorrectPassword =getData(0,"incorrectPassword");
+            incorrectEmail = getData(path,n,"incorrectEmailAddress");
+            incorrectPassword =getData(path,n,"incorrectPassword");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -108,8 +109,7 @@ public class LoginModuleStepDef extends TestRunner {
     @Then("I am navigated to the residents screen and verify email")
     public void iAmNavigatedToTheResidentsScreenAndVerifyEmail() {
         LoginPage loginDriver=new LoginPage(driver);
-        loginDriver.allowPermission();
-        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc='More']")).click();
+        loginDriver.tapOnMore();
         driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_feature_name\" and @text=\"Account\"]")).click();
         String getEmail=driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/staff_email\"]")).getText();
         Assert.assertEquals(getEmail, correctEmail);
@@ -117,7 +117,6 @@ public class LoginModuleStepDef extends TestRunner {
 
     @Then("I am navigated to the residents screen")
     public void iAmNavigatedToTheResidentsScreen() {
-//        LoginPage loginDriver=new LoginPage(driver);
-//        loginDriver.allowPermission();
+        System.out.println("I am on Resident Screen");
     }
 }

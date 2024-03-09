@@ -1,0 +1,13 @@
+[
+  {
+    "outletName":"Bar & Kitchen Requests",
+    "outletInstance":"Riverside Bistro",
+    "productName":"Classic Cheeseburger",
+    "productQuantity":"4",
+    "modifierFamily":"Choice of Cheese",
+    "modifierName":"Swiss",
+    "modifierQuantity":"1",
+    "addonName":"Avocado",
+    "addonQuantity":"1"
+  }
+]

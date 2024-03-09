@@ -54,5 +54,25 @@
     "date": "10 April 2024",
     "addonQuantity": "1",
     "time": ""
+  },
+  {
+    "serviceName": "atWatterBottle",
+    "addonName": "Cold Water",
+    "date": "10 March 2024",
+    "addonQuantity": "1",
+    "time": "07:30 PM",
+    "deliveryTime": "08:55 PM",
+    "timeSlot": "11:00 AM-02:00 PM"
+  },
+  {
+    "serviceName": "atBedPillow",
+    "addonName": "Medium",
+    "date": "11 March 2024",
+    "addonQuantity": "1",
+    "time": "12:40 PM",
+    "deliveryTime": "09:45 PM",
+    "timeSlot": "11:00 AM-02:00 PM",
+    "deliveryDate": "12 March 2024",
+    "deliveryTimeSlot": "03:00 PM-06:00 PM"
   }
 ]

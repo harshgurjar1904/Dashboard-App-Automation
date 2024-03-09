@@ -2,16 +2,11 @@ package org.digivalet.utils;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
-import java.time.Duration;
 import java.util.*;
-
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
 
 public class AndroidActions extends AppiumUtils {
 	public AndroidDriver driver;
@@ -19,20 +14,15 @@ public class AndroidActions extends AppiumUtils {
 		this.driver=driver;
 	}
 	
-	public void scrollToText(String value) {
+	public void scrollToTextAndTap(String value) {
 		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+value+"\"));"));
 		driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_name\" and @text='"+value+"']")).click();
 	}
-	public void scrollToText1(String value) {
+	public void scrollToText(String value) {
 		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+value+"\"));"));
 	}
 
-
 	public void tapOnCoordinate(int x, int y) {
-
-//		 TouchAction touchAction = new TouchAction(driver);
-//		 touchAction.tap(PointOption.point(x, y))
-//		 .perform();
 		((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
 				"x",x,
 				"y",y,

@@ -1,5 +1,6 @@
 package org.digivalet.utils;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -26,7 +27,8 @@ public class PortalAppUtils extends AndroidActions {
 
     @AndroidFindBy(xpath="//android.widget.TextView[@content-desc=\"Filter\"]")
     private WebElement filterButtonLocator;
-
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"android:id/button1\"]")
+    private WebElement okButtonLocator;
 
 
     public void openFeature(String featureName) {
@@ -57,25 +59,28 @@ public class PortalAppUtils extends AndroidActions {
 
     public void selectParticularDate(String date){
         driver.findElement(By.xpath("//android.view.View[@content-desc=\""+date+"\"]")).click();
-
-        //android.view.View[@content-desc='01 April 2024']
-        //android.view.View[@content-desc="04 March 2024"]
+        okButtonLocator.click();
     }
-    public void selectParticularTimeSlot(String givenTimeSlot){
+    public void restartFromMoreSection(){
+        driver.executeScript("mobile:startActivity", ImmutableMap.of("intent","com.paragon.sensonicstaff/com.paragon.sensonicstaff.ui.activities.dashboard.DashboardActivity"));
+        tapOnMore();
+    }
+
+    public void selectParticularTimeSlot(String givenTimeSlot) throws InterruptedException {
+        Thread.sleep(3000);
        WebElement timeSlotBox=driver.findElement(By.xpath("//android.widget.ListView"));
        List<WebElement> timeSlots=timeSlotBox.findElements(By.className("android.widget.LinearLayout"));
        int noOfTimeSlot= timeSlots.size();
+       System.out.println("No of time slot "+noOfTimeSlot);
        int temp=0;
        while(temp<noOfTimeSlot){
            List<WebElement> timeSlot=timeSlots.get(temp).findElements(By.className("android.widget.TextView"));
            if(timeSlot.get(0).getText().contains(givenTimeSlot)){
+               System.out.println("time slot "+timeSlot.get(0).getText());
                timeSlot.get(0).click();
                break;
            }
            temp++;
        }
     }
-
-
-
 }

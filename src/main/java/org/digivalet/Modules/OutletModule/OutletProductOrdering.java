@@ -3,7 +3,6 @@ package org.digivalet.Modules.OutletModule;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.digivalet.utils.AndroidActions;
 import org.digivalet.utils.PortalAppUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -68,7 +67,7 @@ public class OutletProductOrdering extends PortalAppUtils {
 	public void selectUnitNo(String unitNo) throws InterruptedException {
 		if(!unitNoFieldLocator.getText().contains(unitNo)) {
 			unitNoFieldLocator.click();
-			scrollToText(unitNo);	
+			scrollToTextAndTap(unitNo);
 		}
 		
 	}
@@ -76,14 +75,14 @@ public class OutletProductOrdering extends PortalAppUtils {
 	public void selectResidentName(String residentName) throws InterruptedException {
 		if(!bookForLocator.getText().contains(residentName)) {
 		bookForLocator.click();
-		scrollToText(residentName);
+		scrollToTextAndTap(residentName);
 	}
 	}
 	
 	public void selectOutletInstance(String bookFrom) throws InterruptedException {
 		if(!bookFromLocator.getText().contains(bookFrom)) {
 		bookFromLocator.click();
-		scrollToText(bookFrom);
+		scrollToTextAndTap(bookFrom);
 	}
 	}
 	

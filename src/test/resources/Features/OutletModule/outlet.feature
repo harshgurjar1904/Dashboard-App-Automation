@@ -28,7 +28,6 @@ Feature: feature to test product ordering from outlet
 
   @OutletTest
   @GoToMoreSection
-    @AllowPermission
   Scenario: I  want to order product with boolean modifier from an outlet
     Given I am on Outlet requests list  Screen
     When I tap on plus icon

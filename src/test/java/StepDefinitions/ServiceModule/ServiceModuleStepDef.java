@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class ServiceModuleStepDef extends TestRunner {
 
-    public static int n=2;
+    public static String path ="src/test/java/StepDefinitions/ServiceModule/serviceTestdata.json";
+    public static int n=9;
     public static String serviceName;
     public static String packageName;
     public static String addonName;
@@ -17,27 +18,33 @@ public class ServiceModuleStepDef extends TestRunner {
     public static String preferenceName;
     public static String specialEntityName;
     public static String anotherPackageName;
-    public static String date;
-    public static String time;
+    public static String requestDate;
+    public static String preferredTime;
     public static String deliveryTime;
-    public static String timeSlot;
+    public static String preferredTimeSlot;
+    public static String deliveryDate;
+    public static String deliveryTimeSlot;
+
+
 
 
 
     static {
         try {
-            serviceName = getData(n,"serviceName");
-            packageName=getData(n,"packageName");
-            anotherPackageName=getData(n,"anotherPackageName");
-            addonName=getData(n,"addonName");
-            addonQuantity=getData(n,"addonQuantity");
-            preferenceTypeName=getData(n,"preferenceTypeName");
-            preferenceName=getData(n,"preferenceName");
-            specialEntityName=getData(n,"petName");
-            date=getData(n,"date");
-            time=getData(n,"time");
-            deliveryTime=getData(n,"deliveryTime");
-            timeSlot=getData(n,"timeSlot");
+            serviceName = getData(path,n,"serviceName");
+            packageName=getData(path,n,"packageName");
+            anotherPackageName=getData(path,n,"anotherPackageName");
+            addonName=getData(path,n,"addonName");
+            addonQuantity=getData(path,n,"addonQuantity");
+            preferenceTypeName=getData(path,n,"preferenceTypeName");
+            preferenceName=getData(path,n,"preferenceName");
+            specialEntityName=getData(path,n,"petName");
+            requestDate =getData(path,n,"date");
+            preferredTime =getData(path,n,"time");
+            deliveryTime=getData(path,n,"deliveryTime");
+            preferredTimeSlot =getData(path,n,"timeSlot");
+            deliveryDate=getData(path,n,"deliveryDate");
+            deliveryTimeSlot=getData(path,n,"deliveryTimeSlot");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -168,14 +175,14 @@ public class ServiceModuleStepDef extends TestRunner {
     @And("I select the future date")
     public void iSelectTheFutureDate() {
         ServiceRequest serviceDriver=new ServiceRequest(driver);
-        serviceDriver.selectdate(date);
+        serviceDriver.selectRequestDate(requestDate);
 
     }
 
     @And("I select the preferred Request time")
     public void iSelectThePreferredTime() throws InterruptedException {
         ServiceRequest serviceDriver=new ServiceRequest(driver);
-        serviceDriver.selectRequestTime(time);
+        serviceDriver.selectRequestTime(preferredTime);
     }
 
     @And("I select the preferred Delivery time")
@@ -185,25 +192,29 @@ public class ServiceModuleStepDef extends TestRunner {
     }
 
     @And("I select Request Time slot")
-    public void iSelectRequestTimeSlot() {
+    public void iSelectRequestTimeSlot() throws InterruptedException {
         ServiceRequest serviceDriver=new ServiceRequest(driver);
-        serviceDriver.selectTimeSlot(timeSlot);
+        serviceDriver.selectPreferredTimeSlot(preferredTimeSlot);
 
 
     }
 
     @And("I select delivery date")
     public void iSelectDeliveryDate() {
+        ServiceRequest serviceDriver = new ServiceRequest(driver);
+        serviceDriver.selectDeliveryDate(deliveryDate);
 
     }
 
     @And("I select Delivery slot")
-    public void iSelectDeliverySlot() {
+    public void iSelectDeliverySlot() throws InterruptedException {
+        ServiceRequest serviceDriver = new ServiceRequest(driver);
+        serviceDriver.selectDeliveryTimeSlot(deliveryTimeSlot);
     }
 
     @And("I select the preferred Request time in selected slot")
     public void iSelectThePreferredRequestTimeInSelectedSlot() throws InterruptedException {
         ServiceRequest serviceDriver=new ServiceRequest(driver);
-        serviceDriver.selectRequestTimeInTimeSlot(time);
+        serviceDriver.selectRequestTimeInTimeSlot(preferredTime);
     }
 }
