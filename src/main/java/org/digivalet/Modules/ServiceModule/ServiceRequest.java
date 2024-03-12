@@ -239,10 +239,6 @@ public class ServiceRequest extends PortalAppUtils {
 
     }
 
-
-
-
-
     public void getServiceRequest(String serviceName) throws InterruptedException {
         tapONFilterButton();
         driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/item_tv\" and @text=\"Today\"]")).click();

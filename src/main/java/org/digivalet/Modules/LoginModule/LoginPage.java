@@ -21,6 +21,10 @@ public class LoginPage extends PortalAppUtils {
 	public WebElement passwordlocator;
 	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/btn_login\"]")
 	private WebElement loginButtonLocator;
+	@AndroidFindBy(xpath="//android.widget.LinearLayout[@resource-id=\"com.paragon.sensonicstaff:id/logout_tile\"]")
+	private WebElement logoutFieldLocator;
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/btn_logout\"]")
+	private WebElement logoutButtonLocator;
 
 	public void sendEmailAddress(String emailAddress) {
 		emailFieldLocator.sendKeys(emailAddress);
@@ -32,6 +36,11 @@ public class LoginPage extends PortalAppUtils {
 	
 	public void tapLoginButton() {
 		loginButtonLocator.click();
+	}
+
+	public void tapLogoutButton(){
+		logoutFieldLocator.click();
+		logoutButtonLocator.click();
 	}
 
 }

@@ -9,6 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-@CucumberOptions(features="src/test/resources/Features",glue={"StepDefinitions"}, monochrome = true,  plugin = {"pretty","html:target/htmlReports"},tags="@ServiceTest")
+@CucumberOptions(features="src/test/resources/Features",glue={"StepDefinitions"}, monochrome = true,  plugin = {"pretty","html:target/htmlReports.html"},tags="@LoginTest or @OutletTest or @@GoToMoreSection")
 public class TestRunner extends BaseClass {
 }

@@ -42,7 +42,7 @@ public class OutletModuleStepDef extends TestRunner {
     }
 
 
-    @Before(value="@GoToMoreSection" ,order=1)
+    @Before(value="@GoToMoreSection")
     public void resetToMore(){
         OutletProductOrdering opo=new OutletProductOrdering(driver);
         opo.restartFromMoreSection();

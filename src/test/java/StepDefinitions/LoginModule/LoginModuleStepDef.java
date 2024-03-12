@@ -113,6 +113,7 @@ public class LoginModuleStepDef extends TestRunner {
         driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/label_feature_name\" and @text=\"Account\"]")).click();
         String getEmail=driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.paragon.sensonicstaff:id/staff_email\"]")).getText();
         Assert.assertEquals(getEmail, correctEmail);
+        loginDriver.tapLogoutButton();
     }
 
     @Then("I am navigated to the residents screen")
