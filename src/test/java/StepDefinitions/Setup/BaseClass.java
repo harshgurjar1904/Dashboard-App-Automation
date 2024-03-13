@@ -38,17 +38,17 @@ public class BaseClass extends AppiumUtils{
 	public void configorAppium() throws IOException {
 
 				Properties prop=new Properties();
-				FileInputStream fis= new FileInputStream(System.getProperty("user.dir")+"\\Resources\\data.properties");
+				FileInputStream fis= new FileInputStream("Resources/data.properties");
 				prop.load(fis);
 				String ipAddress=prop.getProperty("ipAddress");
 				int portNo=Integer.parseInt(prop.getProperty("portNo"));
-				String systemUserName=prop.getProperty("systenUserName2");
-				String deviceName=prop.getProperty("deviceName2");
+				String deviceName=prop.getProperty("deviceName1");
 				int duration=Integer.parseInt(prop.getProperty("duration"));
-				String appPath=System.getProperty("user.dir")+"\\Resources\\base.apk";
+				String appPath="Resources/base.apk";
+				String mainPath=prop.getProperty("mainpath");
 
 
-				service=startAppiumServer(systemUserName,ipAddress,portNo);
+				service=startAppiumServer(mainPath,ipAddress,portNo);
 				UiAutomator2Options option= new UiAutomator2Options();
 				option.setDeviceName(deviceName); 				
 				option.setApp(appPath);
